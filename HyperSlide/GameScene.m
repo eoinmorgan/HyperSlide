@@ -7,19 +7,41 @@
 //
 
 #import "GameScene.h"
+#import <CoreMotion/CoreMotion.h>
 
 @implementation GameScene
 
+
+
 -(void)didMoveToView:(SKView *)view {
     /* Setup your scene here */
-    SKLabelNode *myLabel = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
+
+    [super didMoveToView:view];
     
-    myLabel.text = @"Hello, World!";
-    myLabel.fontSize = 65;
-    myLabel.position = CGPointMake(CGRectGetMidX(self.frame),
-                                   CGRectGetMidY(self.frame));
+    self.gravityConst=9.8;
     
-    [self addChild:myLabel];
+    // Physics setup
+    self.physicsWorld.gravity = CGVectorMake(0.0f, 0.0f);
+    SKPhysicsBody* borderBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:self.frame];
+    self.physicsBody = borderBody;
+    self.physicsBody.friction = 0.4f;
+    
+    // Gyro setup
+    self.motionManager = [[CMMotionManager alloc] init];
+    self.motionManager.gyroUpdateInterval = 0.2f;
+    [self.motionManager startDeviceMotionUpdates];
+}
+
+- (void)update:(NSTimeInterval)currentTime {
+    [self adjustGravity];
+}
+
+-(void)adjustGravity {
+    CGFloat newXGravity, newYGravity;
+    CMDeviceMotion* motion = self.motionManager.deviceMotion;
+    newXGravity = sin(motion.attitude.roll)*self.gravityConst;
+    newYGravity = (-1)*sin(motion.attitude.pitch)*self.gravityConst;
+    self.physicsWorld.gravity = CGVectorMake(newXGravity, newYGravity);
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -28,22 +50,22 @@
     for (UITouch *touch in touches) {
         CGPoint location = [touch locationInNode:self];
         
-        SKSpriteNode *sprite = [SKSpriteNode spriteNodeWithImageNamed:@"Spaceship"];
+        SKSpriteNode *sprite = [GameScene makeTarget];
         
-        sprite.xScale = 0.5;
-        sprite.yScale = 0.5;
+        sprite.xScale = .25;
+        sprite.yScale = .25;
         sprite.position = location;
-        
-        SKAction *action = [SKAction rotateByAngle:M_PI duration:1];
-        
-        [sprite runAction:[SKAction repeatActionForever:action]];
         
         [self addChild:sprite];
     }
 }
 
--(void)update:(CFTimeInterval)currentTime {
-    /* Called before each frame is rendered */
++(SKSpriteNode*)makeTarget {
+    SKSpriteNode* sprite = [SKSpriteNode spriteNodeWithImageNamed:@"target_red"];
+    sprite.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:200];
+    sprite.physicsBody.mass = 1;
+    sprite.physicsBody.friction = 1;
+    return sprite;
 }
 
 @end
