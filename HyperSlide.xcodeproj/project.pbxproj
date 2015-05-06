@@ -16,7 +16,6 @@
 		04848BBA1AF0BC08005354A9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04848BB91AF0BC08005354A9 /* Images.xcassets */; };
 		04848BBD1AF0BC08005354A9 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04848BBB1AF0BC08005354A9 /* LaunchScreen.xib */; };
 		04848BC91AF0BC08005354A9 /* HyperSlideTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 04848BC81AF0BC08005354A9 /* HyperSlideTests.m */; };
-		04848BD41AF0BF44005354A9 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04848BD31AF0BF44005354A9 /* MenuViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,8 +45,6 @@
 		04848BC21AF0BC08005354A9 /* HyperSlideTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HyperSlideTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		04848BC71AF0BC08005354A9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		04848BC81AF0BC08005354A9 /* HyperSlideTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HyperSlideTests.m; sourceTree = "<group>"; };
-		04848BD21AF0BF44005354A9 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
-		04848BD31AF0BF44005354A9 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,8 +98,6 @@
 				04848BB91AF0BC08005354A9 /* Images.xcassets */,
 				04848BBB1AF0BC08005354A9 /* LaunchScreen.xib */,
 				04848BA71AF0BC08005354A9 /* Supporting Files */,
-				04848BD21AF0BF44005354A9 /* MenuViewController.h */,
-				04848BD31AF0BF44005354A9 /* MenuViewController.m */,
 			);
 			path = HyperSlide;
 			sourceTree = "<group>";
@@ -238,7 +233,6 @@
 				04848BAD1AF0BC08005354A9 /* AppDelegate.m in Sources */,
 				04848BB01AF0BC08005354A9 /* GameScene.m in Sources */,
 				04848BAA1AF0BC08005354A9 /* main.m in Sources */,
-				04848BD41AF0BF44005354A9 /* MenuViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
